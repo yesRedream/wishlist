@@ -1,0 +1,37 @@
+.sidebar
+    max-width: 280px
+    min-width: 280px
+    border-right: 1px solid #DADCE0
+
+    h2
+        padding: 0 10px 0 40px
+
+    .navlink
+        color: inherit
+        text-decoration: inherit
+
+    .category
+        input[type=radio]
+            display: none
+
+            &:checked + .category-label
+                background-color: #c9c9c9 
+
+            &:disabled + .category-label
+                background-color: green
+            
+            &:checked + .category-label:hover
+                background-color: #c9c9c9 
+
+        .category-label
+            display: flex
+            align-items: center
+            height: 50px
+            padding: 0 10px 0 50px
+            cursor: pointer
+
+            &:hover
+                background-color: #e8e8e8 
+
+
+
