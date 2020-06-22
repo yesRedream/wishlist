@@ -1,14 +1,8 @@
 import React, { useState,  useEffect } from 'react';
-import { get } from '../../api';
 import { NavLink } from 'react-router-dom'; 
 
-export default function Sidebar() {
+export default function Sidebar({ categories }) {
 
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    get('categories').then(setCategories);
-  }, [])
 
   return (
     <div className="sidebar">
@@ -26,7 +20,7 @@ export default function Sidebar() {
          {categories.map(categories =>
          <div className="category">
            <input type="radio" id={categories.id} name="category"></input>
-           <NavLink className="navlink" to={categories.title}>
+           <NavLink className="navlink" to={categories.id}>
             <label className="category-label" key={categories.id} for={categories.id}>
               {categories.title}
               </label>

@@ -3,8 +3,8 @@ import { db } from './firebase';
 export function get(collection) {
     return db.collection(collection)
         .get()
-        .then(snapshot => {
-            const items = snapshot.docs.map(doc => ({
+        .then(collection => {
+            const items = collection.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }));

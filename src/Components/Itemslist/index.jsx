@@ -1,18 +1,15 @@
-import React, { useState,  useEffect } from 'react';
-import { get } from '../../api';
+import React, { useContext } from 'react';
+import DBContext from '../../context/db';
 
-export default function Itemslist() {
+export default function Itemslist({match}) {
 
-    const [categories, setCategories] = useState([]);
-  
-    useEffect(() => {
-      get('wishes').then(setCategories);
-    }, [])
+    console.log(match.params.categoryId);
+    const db = useContext(DBContext);
   
     return (
       <div className="a">
         <ul>
-           {categories.map(wishes =>
+           {db.wishes.map(wishes =>
             <li key={wishes.id}>{wishes.title}</li>
            )}
          </ul> 
