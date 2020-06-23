@@ -12,23 +12,24 @@ import Content from './Components/Content';
 
 function App() {
   const [categories, setCategories] = useState([]);
-  const [wishes, setWishes] = useState([]);
 
+  // const [wishes, setWishes] = useState([]);
 
   useEffect(() => {
-    get('categories').then(setCategories);
-    get('wishes').then(setWishes);
-  }, [])
+    get('categories')().then(setCategories);
+    // get('wishes').then(setWishes);
+  }, []);
+
 
   return (
-    <DBContext.Provider value={{categories, wishes}}>
+    <DBContext.Provider value={{categories, get}}>
       <div className="app">
         <Header/>
         <div className="main">
           <Sidebar categories={categories}/>
           <Content>
             <Switch>
-              <Route exact path="/" component={Itemslist} />
+              {/* <Route exact path="/" component={Itemslist} /> */}
               <Route path="/:categoryId?" component={Itemslist} />
           </Switch>
           </Content>
