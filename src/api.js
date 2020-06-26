@@ -19,3 +19,56 @@ export function get(collectionName) {
     }
 
 }
+
+export function getCategories() {
+    return db.collection('categories')
+        .get()
+        .then(snapshot => {
+            const items = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            
+            return items;
+        });        
+}
+
+export function getWishes() {
+    return db.collection('wishes')
+        // .where('categoryId', '==', '')
+        .get()
+        .then(snapshot => {
+            const items = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            
+            return items;
+        });
+}
+
+export function getCategoryWishes(listId) {
+    return db.collection('wishes')
+        .where('categoryId', 'array-contains', listId)
+        .get()
+        .then(snapshot => {
+            const items = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            
+            return items;
+        });          
+}
+
+export function createWish(data) {
+    return db.collection('wishes').add({
+        ...data,
+        completed: false
+    })
+        .then(docRef => docRef.get())
+        .then(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+}

@@ -7,15 +7,26 @@ export default function Itemslist({match}) {
 
     const db = useContext(DBContext);
     useEffect(() => {
-      db.get('wishes')(collection => 
-        collection.where('categoryId', 'array-contains', match.params.categoryId)
-        )
+      if (match.params.categoryId === 'all' || match.params.categoryId === undefined) {
+        db.getWishes()
         .then(setWishes);
+      } else if (match.params.categoryId) {
+        db.getCategoryWishes(match.params.categoryId)
+          .then(setWishes);
+      } 
     }, [db, match.params.categoryId]);
-    
 
     const category = db.categories.find(category => category.id === match.params.categoryId);
-    if (!category) return <div></div>;
+    if (!category || category === 'all') 
+      return  (
+        <div className="a">
+        <h1>All</h1>
+          <div>
+            {wishes.map(wish =>
+              <div key={wish.id}>{wish.title}</div>
+            )}
+          </div> 
+        </div>);
 
     return (
       <div className="a">
