@@ -12,7 +12,7 @@ export default function Sidebar({ categories }) {
           
             <input type="radio" id="all" name="category"></input>
             <NavLink className="navlink" to="/all">
-              <label className="category-label" for="all">
+              <label className="category-label" htmlFor="all">
                 All
               </label>
             </NavLink>
@@ -21,7 +21,7 @@ export default function Sidebar({ categories }) {
          <div className="category">
            <input type="radio" id={categories.id} name="category"></input>
            <NavLink className="navlink" to={categories.id}>
-            <label className="category-label" key={categories.id} for={categories.id}>
+            <label className="category-label" key={categories.id} htmlFor={categories.id}>
               {categories.title}
               </label>
             </NavLink>

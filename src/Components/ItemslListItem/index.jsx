@@ -1,14 +1,9 @@
-import React, { useState,  useEffect } from 'react';
+import React, {  } from 'react';
 
-export default function Itemslist({wishes}) {
-  
+export default function ItemsListItem({wishId, wishTitle}) {
     return (
-      <div className="a">
-        <ul>
-           {wishes.map(wishes =>
-            <li key={wishes.id}>{wishes.title}</li>
-           )}
-         </ul> 
+      <div className="a" key={wishId}>
+        {wishTitle}
       </div>
        
           

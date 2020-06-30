@@ -63,8 +63,8 @@ export function getCategoryWishes(listId) {
 
 export function createWish(data) {
     return db.collection('wishes').add({
-        ...data,
-        completed: false
+        ...data
+        // completed: false
     })
         .then(docRef => docRef.get())
         .then(doc => ({
