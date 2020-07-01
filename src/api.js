@@ -72,3 +72,8 @@ export function createWish(data) {
             ...doc.data()
         }));
 }
+
+export function deleteWish(wishId) {
+    return db.collection('wishes').doc(wishId).delete()
+        .then(() => wishId);
+}

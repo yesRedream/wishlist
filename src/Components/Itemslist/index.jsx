@@ -35,30 +35,44 @@ export default function Itemslist({match}) {
       }
     }
 
+    function handleDelete(wishId) {
+      db.deleteWish(wishId).then(wishId => {
+        setWishes([...wishes.filter(w => w.id !== wishId)])
+      });
+    }
+
     const category = db.categories.find(category => category.id === match.params.categoryId);
     if (!category || category === 'all') 
       return  (
-        <div className="a">
-        <h1>All</h1>
-        <WishCreate onSubmit={handleSubmit}></WishCreate>
-          <div>
+        <div className="items-list">
+          <h1>All</h1>
+          <WishCreate onSubmit={handleSubmit}></WishCreate>
+          <div className="items-list-wrap">
             {wishes.map(wish =>
-            <ItemsListItem wishId={wish.id} wishTitle={wish.title}/>
-
-
-              // <div key={wish.id}>{wish.title}</div>
+              <ItemsListItem 
+                key={wish.id}
+                wish={wish}
+                // wishId={wish.id} 
+                // wishTitle={wish.title}
+                onDelete={handleDelete}
+              />
             )}
           </div> 
         </div>);
 
     return (
-      <div className="a">
+      <div className="items-list">
         <h1>{category.title}</h1>
         <WishCreate onSubmit={handleSubmit}></WishCreate>
-        <div>
+        <div className="items-list-wrap">
            {wishes.map(wish =>
-            // <div key={wish.id}>{wish.title}</div>
-            <ItemsListItem wishId={wish.id} wishTitle={wish.title}/>
+            <ItemsListItem 
+              key={wish.id}
+              wish={wish}
+              // wishId={wish.id} 
+              // wishTitle={wish.title}
+              onDelete={handleDelete}
+            />
 
            )}
          </div> 

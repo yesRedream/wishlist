@@ -1,9 +1,12 @@
 import React, {  } from 'react';
 
-export default function ItemsListItem({wishId, wishTitle}) {
+export default function ItemsListItem({wish, onDelete}) {
     return (
-      <div className="a" key={wishId}>
-        {wishTitle}
+      <div className="wish-item">
+        <h4>{wish.title}</h4>
+        <div 
+          className="delete"
+          onClick={() => onDelete(wish.id)}>x</div>
       </div>
        
           
