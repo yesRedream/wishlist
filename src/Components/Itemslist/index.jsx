@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import DBContext from '../../context/db';
 import WishCreate from '../WishCreate';
-import ItemsListItem from '../ItemslListItem';
+import ListItem from '../ListItem';
+import ListItemEdit from '../ListItemEdit';
 
 export default function Itemslist({match}) {
-
+    const [selectedWish, setSelectedWish] = useState(null);
     const [wishes, setWishes] = useState([]);
 
     const db = useContext(DBContext);
@@ -41,6 +42,21 @@ export default function Itemslist({match}) {
       });
     }
 
+    function handleSelect(wish) {
+      setSelectedWish(wish);
+    }
+
+ 
+
+
+    // function setCategoryTitle(){
+    //   const category = db.categories.find(category => category.id === match.params.categoryId);
+    //   if (!category || category === 'all')
+    //     return 'All';
+    //   return category.title;
+      
+    // }
+
     const category = db.categories.find(category => category.id === match.params.categoryId);
     if (!category || category === 'all') 
       return  (
@@ -49,15 +65,24 @@ export default function Itemslist({match}) {
           <WishCreate onSubmit={handleSubmit}></WishCreate>
           <div className="items-list-wrap">
             {wishes.map(wish =>
-              <ItemsListItem 
+              <ListItem 
                 key={wish.id}
                 wish={wish}
                 // wishId={wish.id} 
                 // wishTitle={wish.title}
                 onDelete={handleDelete}
+                onSelect={handleSelect}
               />
             )}
           </div> 
+          
+          <div className={(selectedWish && 'active list-item-edit-wrap') || 'list-item-edit-wrap'}>
+            <div className="list-item-background" onClick={() => setSelectedWish(null)}></div>
+            <ListItemEdit
+              wish={selectedWish}  
+            />
+          </div>
+
         </div>);
 
     return (
@@ -66,16 +91,35 @@ export default function Itemslist({match}) {
         <WishCreate onSubmit={handleSubmit}></WishCreate>
         <div className="items-list-wrap">
            {wishes.map(wish =>
-            <ItemsListItem 
+            <ListItem 
               key={wish.id}
               wish={wish}
               // wishId={wish.id} 
               // wishTitle={wish.title}
               onDelete={handleDelete}
+              onSelect={handleSelect}
             />
 
            )}
          </div> 
+
+          <div className={(selectedWish && 'active list-item-edit-wrap') || 'list-item-edit-wrap'}>
+            <div className="list-item-background" onClick={() => setSelectedWish(null)}>
+            
+            </div>
+            <ListItemEdit
+              wish={selectedWish}  
+            />
+          </div>
+
+         {/* {selectedWish &&
+            <div className="list-item-edit-wrap" >
+              <div className="list-item-background" onClick={() => setSelectedWish(null)}></div>
+              <ListItemEdit
+                wish={selectedWish}  
+              />
+            </div>
+         } */}
       </div>
        
           

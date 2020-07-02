@@ -15,8 +15,8 @@ export default function WishCreate({ onSubmit }) {
 }
 
   return (
-    <form onSubmit={handleSubmit} className="add-wishh-form">
-      <input type="text" value={title} placeholder="я хочю..." onChange={e => setTitle(e.target.value)}/>
+    <form onSubmit={handleSubmit} className="add-wish-form">
+      <input className="create-wish-input" type="text" value={title} placeholder="я хочю..." onChange={e => setTitle(e.target.value)}/>
       {/* <input type="text" title={title} placeholder="я хочю..." onChange={setTitle}/> */}
     </form>
   );

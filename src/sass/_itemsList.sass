@@ -1,5 +1,51 @@
 .items-list
+    padding: 5px
+    
     .items-list-wrap
         display: flex
         flex-wrap: wrap
         justify-content: flex-start
+
+    .list-item-edit-wrap
+        visibility: hidden
+        
+
+        .list-item-background
+            background: rgba(60, 60, 60, 0.88)
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            opacity: 0
+            opacity: 0
+            z-index: 0
+            transition: 0.15s
+
+
+        .wish-item-edit
+            background: white
+            z-index: 1
+            width: 500px
+            height: 500px
+            position: absolute
+            top: calc(50% - 250px)
+            left: calc(50% - 250px)
+            transform: translateX(-5%)
+            transition: 0.1s
+            border-radius: 25px
+            padding: 25px
+            
+
+        
+
+
+
+        &.active
+            visibility: visible
+
+            .list-item-background
+                opacity: 1
+
+            .wish-item-edit
+                transform: translateX(0)
