@@ -77,3 +77,17 @@ export function deleteWish(wishId) {
     return db.collection('wishes').doc(wishId).delete()
         .then(() => wishId);
 }
+
+// export function updateWish(wishId, data) {
+//     //   console.log(wishId, data);
+//     return db.collection('wishes').doc(wishId).update(data)
+//     .then(() => ({
+//         id: wishId,
+//         ...data
+//     }));
+// }
+
+export function updateWish(wishId, data) {
+    //   console.log(wishId, data);
+    return db.collection('wishes').doc(wishId).update({'title': data});
+}

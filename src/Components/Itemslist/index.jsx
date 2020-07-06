@@ -46,6 +46,10 @@ export default function Itemslist({match}) {
       setSelectedWish(wish);
     }
 
+    function handleUpdate(wishId, data) {
+      // console.log(wishId, data);
+      db.updateWish(wishId, data);
+    }
  
 
 
@@ -75,13 +79,16 @@ export default function Itemslist({match}) {
               />
             )}
           </div> 
+
           
+          {selectedWish &&
           <div className={(selectedWish && 'active list-item-edit-wrap') || 'list-item-edit-wrap'}>
             <div className="list-item-background" onClick={() => setSelectedWish(null)}></div>
             <ListItemEdit
+              onUpdate={handleUpdate}
               wish={selectedWish}  
             />
-          </div>
+          </div>}
 
         </div>);
 
@@ -102,15 +109,17 @@ export default function Itemslist({match}) {
 
            )}
          </div> 
-
+         {selectedWish &&
           <div className={(selectedWish && 'active list-item-edit-wrap') || 'list-item-edit-wrap'}>
             <div className="list-item-background" onClick={() => setSelectedWish(null)}>
             
             </div>
             <ListItemEdit
+              onUpdate={handleUpdate}
               wish={selectedWish}  
             />
           </div>
+          }
 
          {/* {selectedWish &&
             <div className="list-item-edit-wrap" >
