@@ -6,7 +6,7 @@ import ListItemEdit from '../ListItemEdit';
 
 export default function Itemslist({match}) {
     const [selectedWish, setSelectedWish] = useState(null);
-    const [wishes, setWishes] = useState([]);
+    const [wishes , setWishes] = useState([]);
 
     const db = useContext(DBContext);
     useEffect(() => {
@@ -49,6 +49,7 @@ export default function Itemslist({match}) {
     function handleUpdate(wishId, data) {
       // console.log(wishId, data);
       db.updateWish(wishId, data);
+
     }
  
 

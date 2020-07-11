@@ -16,11 +16,15 @@ export default function ListItemEdit({wish, onUpdate}) {
   }
 
     return (
-      <div className="wish-item-edit">
+      <div className="edit-wish-item">
         {/* <div>{wish.title}</div> */}
         <form onSubmit={handleSubmit} className="edit-wish-form">
           {/* <input defaultValue={wish && wish.title} value={title}></input> */}
-          <input value={title} onChange={e => setTitle(e.target.value)}></input>
+          <input className="edit-wish-input" 
+                 value={title} 
+                 onChange={e => setTitle(e.target.value)}
+                 ref={input => input && input.focus()}
+          />
         </form>
         {/* <input value={wish && wish.title}></input> */}
       </div>
