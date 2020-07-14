@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // import DBContext from '../../context/db';
 
 
@@ -10,10 +10,12 @@ export default function WishCreate({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(price);
 
     onSubmit(title, price);
     setTitle('');
-    setPrice(0);
+    setPrice('');
+    
 }
 
   return (
@@ -32,6 +34,8 @@ export default function WishCreate({ onSubmit }) {
                placeholder="price" 
                onChange={e => setPrice(e.target.value)}
         />
+
+        <input type="submit" />
         {/* <input type="text" title={title} placeholder="я хочю..." onChange={setTitle}/> */}
       </form>
     </div>

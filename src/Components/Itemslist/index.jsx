@@ -19,16 +19,17 @@ export default function Itemslist({match}) {
       } 
     }, [db, match.params.categoryId]);
 
-    function handleSubmit(title) {
+    function handleSubmit(title, price) {
+      console.log(price);
       if (match.params.categoryId === 'all' || match.params.categoryId === undefined) {
         db.createWish({
-          title
+          title, price
         }).then(wish => {
           setWishes([...wishes, wish])
         });
       } else if (match.params.categoryId) {
         db.createWish({
-          title,
+          title, price,
           categoryId: [category.id]
         }).then(wish => {
           setWishes([...wishes, wish])
