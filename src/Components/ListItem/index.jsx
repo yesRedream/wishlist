@@ -8,14 +8,14 @@ export default function ListItem({wish, onDelete, onSelect}) {
   }
 
   return (
-    <div className="wish-item" onClick={() => onSelect(wish)}>
-      <p>{wish.title}</p>
-      <h1>{wish.price}</h1>
-      <div 
-        className="delete"
-        // onClick={() => onDelete(wish.id)}>x</div>
-        onClick={handleClick}>x</div>
-
+    <div className="wish-item-wrap">
+      <div className="wish-item" onClick={() => onSelect(wish)}>
+        <div className="wish-img-wrap"></div>
+        <p className="wish-name">{wish.title}</p>
+        <p className="wish-price">{wish.price}</p>
+        <p className="wish-link">{wish.link}</p>
+        <button className="delete" onClick={handleClick}>{'\u2715'}</button>
+      </div>
     </div>
       
         

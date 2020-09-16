@@ -7,7 +7,6 @@ export default function Header({match}) {
 //    const category = useContext(categoryContext);
  
     const history = useHistory();
-    
     function handleClick(){
         auth().signOut().then(function() {
             history.push("/");

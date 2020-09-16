@@ -53,7 +53,6 @@ export function getWishes() {
                 id: doc.id,
                 ...doc.data()
             }));
-            
             return items;
         });
 }
@@ -61,13 +60,13 @@ export function getWishes() {
 // export function getWishes() {
 //     return db.collection('wishes')
 //         // .where('categoryId', '==', '')
-//         .onSnapshot((querySnapshot) => {
-//             const items = [];
-//             querySnapshot.forEach((doc) => {
-//               items.push(doc.data());
-//             });
+//         .onSnapshot(snapshot => {
+//             const items = snapshot.docs.map(doc => ({
+//                 id: doc.id,
+//                 ...doc.data()
+//             }));
 //             console.log(items);
-//             return(items);
+//             return items;
 //           });
 // }
 
