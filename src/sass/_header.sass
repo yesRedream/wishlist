@@ -4,3 +4,60 @@
     box-sizing: border-box
     border-bottom: 1px solid #DADCE0
     background-color: #ffffff 
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    padding: 0 0 0 40px
+
+    .profile-wrap
+        position: relative
+        cursor: pointer
+        height: 65px
+
+        &:hover .profile-dropdown
+            display: block
+            // transform: translateY(120px)
+            
+        &:hover .email-img-wrap
+            background-color: #e8e8e8;
+        
+
+    .email-img-wrap
+        height: 64px
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        padding-left: 40px
+        padding-right: 40px
+        // border-radius: 20px 0 0 20px
+        background: #fff
+        transition: all 0.3s ease-in-out
+
+
+    .email-text
+        font-size: 14px
+        margin-right: 10px
+
+    .profile-img
+        height: 50px
+        width: 50px
+        border-radius: 50%
+
+    .profile-dropdown
+        display: none
+        position: absolute
+        top: 65px
+        width: 100%
+        background-color: #fff
+        border-radius: 0 0 15px 15px
+        box-sizing: border-box
+        // transition: all 0.3s ease-in-out
+        padding: 0
+        overflow: hidden
+
+
+        p 
+            margin: 0
+            padding: 13px 40px
+            &:hover
+                background-color: #e8e8e8;

@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 
 // Initialize Cloud Firestore through Firebase
@@ -13,5 +13,7 @@ firebase.initializeApp({
 });
 
 const db = firebase.firestore();
+const auth = firebase.auth;
+// const google = new firebase.auth.GoogleAuthProvider();
 
-export { db };
+export { db, auth};

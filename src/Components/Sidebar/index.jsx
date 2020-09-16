@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom'; 
 
 export default function Sidebar({ categories }) {
@@ -18,10 +18,10 @@ export default function Sidebar({ categories }) {
             </NavLink>
          </div>
          {categories.map(categories =>
-         <div className="category">
+         <div className="category" key={categories.id}>
            <input type="radio" id={categories.id} name="category"></input>
            <NavLink className="navlink" to={categories.id}>
-            <label className="category-label" key={categories.id} htmlFor={categories.id}>
+            <label className="category-label" htmlFor={categories.id}>
               {categories.title}
               </label>
             </NavLink>

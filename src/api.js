@@ -1,4 +1,14 @@
-import { db } from './firebase';
+import { db, auth } from './firebase';
+
+export function signInWithGoogle() {
+    const google = new auth.GoogleAuthProvider(); 
+    return auth().signInWithRedirect(google).then((res) => {
+        console.log(res.user);
+      }).catch((error) => {
+        console.log(error.message);
+      });
+}
+
 
 export function get(collectionName) {
     const collection = db.collection(collectionName);
@@ -37,6 +47,7 @@ export function getWishes() {
     return db.collection('wishes')
         // .where('categoryId', '==', '')
         .get()
+
         .then(snapshot => {
             const items = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -46,6 +57,19 @@ export function getWishes() {
             return items;
         });
 }
+
+// export function getWishes() {
+//     return db.collection('wishes')
+//         // .where('categoryId', '==', '')
+//         .onSnapshot((querySnapshot) => {
+//             const items = [];
+//             querySnapshot.forEach((doc) => {
+//               items.push(doc.data());
+//             });
+//             console.log(items);
+//             return(items);
+//           });
+// }
 
 export function getCategoryWishes(listId) {
     return db.collection('wishes')

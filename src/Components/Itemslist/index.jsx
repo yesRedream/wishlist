@@ -4,11 +4,14 @@ import WishCreate from '../WishCreate';
 import ListItem from '../ListItem';
 import ListItemEdit from '../ListItemEdit';
 
+
 export default function Itemslist({match}) {
     const [selectedWish, setSelectedWish] = useState(null);
     const [wishes , setWishes] = useState([]);
 
+
     const db = useContext(DBContext);
+
     useEffect(() => {
       if (match.params.categoryId === 'all' || match.params.categoryId === undefined) {
         db.getWishes()
