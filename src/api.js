@@ -85,8 +85,11 @@ export function getCategoryWishes(listId) {
 }
 
 export function createWish(data) {
+    const owner = auth().currentUser ? auth().currentUser.uid : 'unknown';
+    console.log(auth().currentUser.uid);
+    // console.log(db.currentUser.uid);
     return db.collection('wishes').add({
-        ...data
+        ...data, owner
         // completed: false
     })
         .then(docRef => docRef.get())
@@ -110,7 +113,26 @@ export function deleteWish(wishId) {
 //     }));
 // }
 
-export function updateWish(wishId, data) {
+// export function updateWish(wishId, title, price, link) {
+//     //   console.log(wishId, data);
+//     return (
+//         db.collection('wishes').doc(wishId).update({'title': title});
+//         db.collection('wishes').doc(wishId).update({'price': price});
+//         db.collection('wishes').doc(wishId).update({'link': link});
+//     );
+// }
+
+export function updateWishName(wishId, data) {
     //   console.log(wishId, data);
     return db.collection('wishes').doc(wishId).update({'title': data});
+}
+
+export function updateWishPrice(wishId, data) {
+    //   console.log(wishId, data);
+    return db.collection('wishes').doc(wishId).update({'price': data});
+}
+
+export function updateWishLink(wishId, data) {
+    //   console.log(wishId, data);
+    return db.collection('wishes').doc(wishId).update({'link': data});
 }

@@ -4,11 +4,10 @@
     position: relative
     overflow: hidden
     width: 240px
-    height: 220px
+    height: 240px
     // margin: 10px
     margin-left: auto
     margin-right: auto
-    padding: 20px
     box-sizing: border-box
     border-radius: 15px
     background: white
@@ -19,11 +18,42 @@
     &:hover
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)
 
+    .wish-img-wrap
+        background: #c9c9c9
+        width: 100%
+        min-height: 125px
+        max-height: 125px
+        position: relative
+
+    .wish-price-wrap
+        position: absolute
+        bottom: 10px
+        right: 10px
+        background-color: #ffffff
+        border-radius: 20px
+        padding: 2px 5px
+
+        .wish-price
+            margin: 0
+
+    .wish-name
+        padding: 5px 10px
+        margin: 0
+        font-weight: 700
+
+    .wish-link
+        margin: 0
+        padding: 5px 10px
+        font-weight: 300
+        text-overflow: ellipsis
+        overflow: hidden;
+        white-space: nowrap
+
 
     .delete
         position: absolute
-        top: 15px
-        right: 15px
+        top: 10px
+        right: 10px
         cursor: pointer
         border: none
         margin: 0
@@ -32,8 +62,50 @@
         overflow: visible
         background: transparent
 
-  
+        &:hover
+            color: red
+
+    .dropdown-wrap
+        position: absolute
+        right: 5px
+        top: 5px
+   
+    .dropdown
+        position: relative
+    
+    .dropbtn 
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        border-radius: 50%
+        padding: 3px
+        width: 20px
+        height: 20px
+        cursor: pointer
 
 
         &:hover
-            color: red
+            background-color: #9c9c9c        
+
+
+        .dot
+            position: relative
+            margin: 1px
+            width: 3px
+            height: 3px
+            background-color: black
+            border-radius: 50%
+        
+
+    .dropdown-content 
+        display: none
+        position: absolute
+        background-color: #f1f1f1
+        min-width: 160px
+        overflow: auto
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+        z-index: 1
+
+    .active
+        display: block

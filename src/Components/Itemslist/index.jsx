@@ -3,7 +3,7 @@ import DBContext from '../../context/db';
 import WishCreate from '../WishCreate';
 import ListItem from '../ListItem';
 import ListItemEdit from '../ListItemEdit';
-import { db } from '../../firebase';
+import { db, auth } from '../../firebase';
 
 export default function Itemslist({match}) {
     const [selectedWish, setSelectedWish] = useState(null);
@@ -14,6 +14,7 @@ export default function Itemslist({match}) {
     function getWishesSubscribe() {
       return db.collection('wishes')
           // .where('categoryId', '==', '')
+        .where('owner', '==', auth().currentUser.uid)
         .onSnapshot(snapshot => {
           const items = snapshot.docs.map(doc => ({
               id: doc.id,
@@ -23,9 +24,10 @@ export default function Itemslist({match}) {
         });
     }
 
-    function getCategoryWishes(listId) {
+    function getCategoryWishesSubscribe(listId) {
       return db.collection('wishes')
           .where('categoryId', 'array-contains', listId)
+          .where('owner', '==', auth().currentUser.uid)
           .onSnapshot(snapshot => {
             const items = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -44,7 +46,7 @@ export default function Itemslist({match}) {
       } else if (match.params.categoryId) {
         // db2.getCategoryWishes(match.params.categoryId)
         //   .then(setWishes);
-        getCategoryWishes(match.params.categoryId);
+        getCategoryWishesSubscribe(match.params.categoryId);
 
       } 
     // }, [db2, match.params.categoryId]);
@@ -77,9 +79,13 @@ export default function Itemslist({match}) {
       setSelectedWish(wish);
     }
 
-    function handleUpdate(wishId, data) {
+    function handleUpdate(wishId, title, price, link) {
       // console.log(wishId, data);
-      db2.updateWish(wishId, data);
+      // db2.updateWish(wishId, title, price, link);
+      db2.updateWishName(wishId, title);
+      db2.updateWishPrice(wishId, price);
+      db2.updateWishLink(wishId, link);
+      setSelectedWish(null);
 
     }
  
@@ -94,36 +100,6 @@ export default function Itemslist({match}) {
     // }
 
     const category = db2.categories.find(category => category.id === match.params.categoryId);
-    
-    // if (!category || category === 'all') 
-    //   return  (
-    //     <div className="items-list">
-    //       <h1>All</h1>
-    //       <WishCreate onSubmit={handleSubmit}></WishCreate>
-    //       <div className="items-list-wrap">
-    //         {wishes.map(wish =>
-    //           <ListItem 
-    //             key={wish.id}
-    //             wish={wish}
-    //             // wishId={wish.id} 
-    //             // wishTitle={wish.title}
-    //             onDelete={handleDelete}
-    //             onSelect={handleSelect}
-    //           />
-    //         )}
-    //       </div> 
-
-          
-    //       {selectedWish &&
-    //       <div className={(selectedWish && 'active list-item-edit-wrap') || 'list-item-edit-wrap'}>
-    //         <div className="list-item-background" onClick={() => setSelectedWish(null)}></div>
-    //         <ListItemEdit
-    //           onUpdate={handleUpdate}
-    //           wish={selectedWish}  
-    //         />
-    //       </div>}
-
-    //     </div>);
 
     return (
       <div className="items-list">
@@ -154,14 +130,14 @@ export default function Itemslist({match}) {
           </div>
           }
 
-         {/* {selectedWish &&
+          {/* {selectedWish &&
             <div className="list-item-edit-wrap" >
               <div className="list-item-background" onClick={() => setSelectedWish(null)}></div>
               <ListItemEdit
                 wish={selectedWish}  
               />
             </div>
-         } */}
+         }  */}
       </div>
        
           

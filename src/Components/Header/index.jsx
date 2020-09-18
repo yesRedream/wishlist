@@ -19,7 +19,7 @@ export default function Header({match}) {
     
     return (
         <header className="header">
-            {/* {category.title} */}
+            <h1>Wish List</h1>
             <div className="profile-wrap">
                 <div className="email-img-wrap">
                     <p className="email-text">{auth().currentUser.email}</p>

@@ -12,28 +12,27 @@ import { auth } from './firebase';
 import DBContext from './context/db';
 
 
-function App() {
+export default function App() {
   const [categories, setCategories] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [wishes, setWishes] = useState([]);
-  let isAuth = auth().currentUser;
+  const [isAuth, setAuth] = useState();
+
+  
 
   useEffect(() => {
     api.getCategories().then(setCategories);
-    // setTimeout(() => setLoading(false), 6000);
-    // get('wishes').then(setWishes);
+    
+    auth().onAuthStateChanged(function(user) {
+      if (user) {
+        setAuth('signed');
+      } else {
+        setAuth('no');
+      }
+    });
+    
   }, []);
-  
-  auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-    } else {
-      // No user is signed in.
-    }
-  });
 
-  if (isAuth) {
-    console.log('mine');
+
+  if (isAuth === 'signed') {
     return (
       <DBContext.Provider value={{categories, ...api}}>
         <div className="app">
@@ -50,14 +49,23 @@ function App() {
         </div>
       </DBContext.Provider>
     );
-  } else { 
+  }
+
+  if (isAuth === 'no') {
     return (
       <DBContext.Provider value={{...api}}>
         <Route component={Login}/>
       </DBContext.Provider>
-
     );
   }
-}
 
-export default App;
+  return (
+    <div className="spinner-wrap">
+      <div className="loadingio-spinner-rolling-pmiwm2ufmu">
+        <div className="ldio-x68g8gm35i">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  );
+}
