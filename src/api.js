@@ -86,8 +86,6 @@ export function getCategoryWishes(listId) {
 
 export function createWish(data) {
     const owner = auth().currentUser ? auth().currentUser.uid : 'unknown';
-    console.log(auth().currentUser.uid);
-    // console.log(db.currentUser.uid);
     return db.collection('wishes').add({
         ...data, owner
         // completed: false

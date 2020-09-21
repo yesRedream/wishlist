@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 
 // Initialize Cloud Firestore through Firebase
-firebase.initializeApp({
+const app = firebase.initializeApp({
     apiKey: "AIzaSyCcwUUV0AAtlv0xtrx5-yer9pY6oFbp6TI",
     authDomain: "wishlist-d768c.firebaseapp.com",
     databaseURL: "https://wishlist-d768c.firebaseio.com",
@@ -16,4 +16,4 @@ const db = firebase.firestore();
 const auth = firebase.auth;
 // const google = new firebase.auth.GoogleAuthProvider();
 
-export { db, auth};
+export { app, db, auth};

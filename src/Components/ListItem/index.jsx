@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 export default function ListItem({wish, onDelete, onSelect}) {
-  const [toggleClass, setToggleClass] = useState(false);
+  // const [toggleClass, setToggleClass] = useState(false);
     
   function handleClick(event){
     event.stopPropagation();
@@ -44,14 +44,19 @@ export default function ListItem({wish, onDelete, onSelect}) {
     <div className="wish-item-wrap">
       <div className="wish-item" onClick={() => onSelect(wish)}>
         <div className="wish-img-wrap">
-
-
-          <div className="wish-price-wrap">
-            <p className="wish-price">{wish.price}$</p>
-          </div>
+          {wish.imgUrl &&
+            <img className="wish-img" src={wish.imgUrl} alt="wish"/>
+          }
+          {wish.price &&
+            <div className="wish-price-wrap">
+              <p className="wish-price">{wish.price}$</p>
+            </div>
+          }
         </div>
         <p className="wish-name">{wish.title}</p>
-        <a rel="noopener noreferrer" href={getClickableLink(wish.link)} target="_blank" onClick={handleClickLink} className="wish-link">{wish.link}</a>
+        {wish.link &&
+          <a rel="noopener noreferrer" href={getClickableLink(wish.link)} target="_blank" onClick={handleClickLink} className="wish-link">{wish.link}</a>
+        }
         
         <button className="delete" onClick={handleClick}>{'\u2715'}</button>
         

@@ -52,19 +52,19 @@ export default function Itemslist({match}) {
     // }, [db2, match.params.categoryId]);
     }, [match.params.categoryId]);
 
-    function handleSubmit(title, price, link) {
+    function handleSubmit(title, price, link, imgUrl) {
       if (match.params.categoryId === 'all' || match.params.categoryId === undefined) {
         db2.createWish({
-          title, price, link
+          title, price, link, imgUrl
         }).then(wish => {
-          setWishes([...wishes, wish])
+          setWishes([...wishes, wish]);
         });
       } else if (match.params.categoryId) {
         db2.createWish({
-          title, price, link,
+          title, price, link, imgUrl,
           categoryId: [category.id]
         }).then(wish => {
-          setWishes([...wishes, wish])
+          setWishes([...wishes, wish]);
         });
       }
     }

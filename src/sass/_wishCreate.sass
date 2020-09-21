@@ -21,7 +21,8 @@
         transition: all 0.3s ease-in-out
 
         &.active
-            height: 120px
+            // height: 120px
+            height: auto
 
             .add-wish-price
                 display: block
@@ -45,5 +46,23 @@
             box-sizing: border-box
 
 
-        .hidden
-            display: none
+        .submit
+            border: none
+            height: 36px
+            padding: 8px 24px
+            margin: 0
+            margin-left: auto
+            width: 100px
+            overflow: visible
+            background: transparent
+            line-height: normal
+            box-sizing: border-box
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
+            letter-spacing: .01785714em
+            font-weight: 500
+            border-radius: 4px
+
+            &:hover
+                background: #e8e8e8

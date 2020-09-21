@@ -2,6 +2,7 @@
     max-width: 280px
     min-width: 280px
     border-right: 1px solid #DADCE0
+    overflow: auto
 
     h2
         padding: 0 10px 0 40px
@@ -32,6 +33,7 @@
         .category-label
             display: flex
             align-items: center
+            position: relative
             height: 50px
             padding: 0 10px 0 40px
             cursor: pointer
@@ -39,7 +41,21 @@
             &:hover
                 background-color: #e8e8e8 
 
+        .delete
+            position: absolute
+            top: 10px
+            right: 10px
+            cursor: pointer
+            border: none
+            margin: 0
+            margin-left: auto
+            padding: 1px 3px
+            width: auto
+            overflow: visible
+            background: transparent
 
+            &:hover
+                color: red
 
     .add-category
         display: flex
@@ -49,5 +65,32 @@
         padding: 0 40px 0 40px
         cursor: pointer
 
-        &:hover
-            background-color: #e8e8e8 
+        // &:hover
+        //     background-color: #e8e8e8 
+
+        form
+            display: flex
+
+        .submit
+            display: flex
+            justify-content: center
+            align-items: center
+            border: none
+            height: 36px
+            padding: 8px 24px
+            margin: 0
+            margin-left: 10px
+            width: 20px
+            overflow: visible
+            background: transparent
+            line-height: normal
+            box-sizing: border-box
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
+            letter-spacing: .01785714em
+            font-weight: 500
+            border-radius: 4px
+
+            &:hover
+                background: #e8e8e8
