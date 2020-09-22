@@ -55,7 +55,9 @@ export default function ListItem({wish, onDelete, onSelect}) {
         </div>
         <p className="wish-name">{wish.title}</p>
         {wish.link &&
-          <a rel="noopener noreferrer" href={getClickableLink(wish.link)} target="_blank" onClick={handleClickLink} className="wish-link">{wish.link}</a>
+          <div className="a-wrap">
+            <a rel="noopener noreferrer" href={getClickableLink(wish.link)} target="_blank" onClick={handleClickLink} className="wish-link">{wish.link}</a>
+          </div>
         }
         
         <button className="delete" onClick={handleClick}>{'\u2715'}</button>

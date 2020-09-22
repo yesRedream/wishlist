@@ -13,7 +13,6 @@ export default function Itemslist({match}) {
 
     function getWishesSubscribe() {
       return db.collection('wishes')
-          // .where('categoryId', '==', '')
         .where('owner', '==', auth().currentUser.uid)
         .onSnapshot(snapshot => {
           const items = snapshot.docs.map(doc => ({
