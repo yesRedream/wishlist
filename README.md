@@ -1,4 +1,4 @@
-# WISHLIST
+# WISHLIST. React & Firebase
 
 #### Link: 
 https://wishlist-d768c.web.app/
